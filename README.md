@@ -3,60 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanatsal Vaftiz Simülasyonu</title>
+    <title>Vaftiz Simülasyonu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: linear-gradient(45deg, #1a0a2e, #0d0630, #1a0a2e);
-            color: #e8e1ef;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 200% 200%;
+            color: white;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
             background-attachment: fixed;
+            transition: background 1s ease;
+            animation: bgMove 30s linear infinite;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             width: 95%;
             text-align: center;
-            padding: 2rem;
-            background: rgba(10, 5, 24, 0.85);
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
             z-index: 10;
-            backdrop-filter: blur(8px);
-            margin: 20px 0;
-            border: 2px solid rgba(113, 89, 193, 0.5);
-        }
-        
-        .header {
-            margin-bottom: 2rem;
-            padding: 1rem;
-            border-bottom: 2px solid rgba(113, 89, 193, 0.3);
+            backdrop-filter: blur(12px);
+            margin: 25px 0;
+            border: 2px solid rgba(79, 195, 247, 0.4);
         }
         
         h1 {
-            font-size: 3.8rem;
-            margin-bottom: 0.5rem;
-            color: #c9b6e4;
-            text-shadow: 0 0 15px rgba(201, 182, 228, 0.6);
-            font-weight: 700;
-            letter-spacing: 2px;
-            position: relative;
-            background: linear-gradient(to right, #a78bfa, #8b5cf6, #7c3aed);
+            font-size: 3.2rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            color: #4fc3f7;
+            background: linear-gradient(to right, #00bcd4, #0288d1, #00bcd4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+            letter-spacing: 1px;
+            position: relative;
         }
         
         h1::after {
@@ -65,141 +63,161 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 300px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, #8b5cf6, transparent);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(to right, transparent, #00bcd4, transparent);
             border-radius: 2px;
         }
         
         .subtitle {
-            font-size: 1.4rem;
-            margin-top: 1.5rem;
-            color: #d8c7ff;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: #e0f7fa;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
-            font-style: italic;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        .simulation-area {
+        .baptism-area {
             position: relative;
-            height: 500px;
+            height: 400px;
             width: 100%;
-            margin: 2rem 0;
-            border-radius: 15px;
+            margin: 2.5rem 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230d47a1"/><circle cx="50" cy="50" r="40" fill="%230097c9"/></svg>') center/cover;
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0,0,0,0.4);
+            border: 4px solid #4fc3f7;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
-        .artistic-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') center/cover;
-            filter: brightness(0.7) saturate(1.2) contrast(0.9);
-            opacity: 0.9;
-            z-index: 1;
-        }
-        
-        .stained-glass {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, transparent 20%, #1a0a2e 150%),
-                        linear-gradient(45deg, rgba(106, 27, 154, 0.2) 0%, rgba(49, 27, 146, 0.3) 100%);
-            z-index: 2;
-        }
-        
-        .baptism-scene {
+        .person-container {
             position: relative;
-            width: 350px;
-            height: 350px;
-            z-index: 3;
+            width: 100%;
+            height: 100%;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            z-index: 5;
         }
         
-        .bathtub {
-            width: 300px;
-            height: 180px;
-            background: url('https://images.unsplash.com/photo-1611158022181-3b2a2a5a5e5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80') center/cover;
-            border-radius: 10px 10px 50% 50%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
-                        inset 0 -10px 30px rgba(0, 0, 0, 0.7);
-            border: 5px solid #5d4a82;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .person {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 150px;
-            background: url('https://images.unsplash.com/photo-1567532939604-b6b5b0e1607d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80') center/cover;
+        .person-photo {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            z-index: 4;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 5px solid #4fc3f7;
+            background: #0d47a1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+            position: relative;
+            z-index: 10;
         }
         
-        .water-level {
+        .person-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        
+        .default-avatar {
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .water-pool {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             height: 40px;
-            background: linear-gradient(to top, rgba(64, 196, 255, 0.7), rgba(100, 181, 246, 0.9));
-            border-radius: 0 0 50% 50%;
+            background: rgba(64, 196, 255, 0.35);
+            border-radius: 0 0 15px 15px;
             transition: height 2s ease;
-            z-index: 3;
+            z-index: 2;
         }
         
         .controls {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: left;
+            border: 1px solid rgba(79, 195, 247, 0.3);
+        }
+        
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .control-row:last-child {
+            border-bottom: none;
+        }
+        
+        .control-row label {
+            min-width: 200px;
+            font-weight: bold;
+            color: #4fc3f7;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-row label i {
+            font-size: 1.3rem;
+            width: 30px;
+            text-align: center;
         }
         
         .baptize-btn {
             padding: 1.4rem 3rem;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #7e57c2, #5e35b1, #4527a0);
+            background: linear-gradient(45deg, #00bcd4, #0288d1);
             color: white;
             border: none;
             border-radius: 60px;
             cursor: pointer;
             transition: all 0.4s ease;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
-            margin: 0 auto;
+            margin-top: 1.2rem;
+            z-index: 20;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            z-index: 20;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 1px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .baptize-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-            background: linear-gradient(45deg, #9575cd, #7e57c2, #673ab7);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #00e5ff, #039be5);
         }
         
         .baptize-btn:active {
@@ -213,7 +231,7 @@
             left: -15px;
             right: -15px;
             bottom: -15px;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
             opacity: 0;
             transition: opacity 0.4s;
         }
@@ -226,118 +244,63 @@
         .water-drop {
             position: absolute;
             top: -50px;
-            width: 10px;
-            height: 20px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(100, 181, 246, 0.8));
-            border-radius: 50% 50% 60% 40%;
-            z-index: 5;
-            pointer-events: none;
-            box-shadow: 0 0 15px rgba(64, 196, 255, 0.9);
-            filter: blur(1px);
-        }
-        
-        .water-splash {
-            position: absolute;
-            width: 30px;
+            width: 8px;
             height: 15px;
-            background: rgba(64, 196, 255, 0.7);
-            border-radius: 50%;
-            z-index: 4;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(64, 196, 255, 0.7));
+            border-radius: 50% 50% 60% 40%;
+            z-index: 2;
             pointer-events: none;
             box-shadow: 0 0 12px rgba(64, 196, 255, 0.9);
         }
         
-        .artistic-details {
+        .water-splash {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        .detail-1 {
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            width: 80px;
-            height: 80px;
-            background: url('https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80') center/cover;
+            width: 25px;
+            height: 12px;
+            background: rgba(64, 196, 255, 0.6);
             border-radius: 50%;
-            opacity: 0.7;
-            transform: rotate(15deg);
-        }
-        
-        .detail-2 {
-            position: absolute;
-            bottom: 20%;
-            right: 10%;
-            width: 100px;
-            height: 100px;
-            background: url('https://images.unsplash.com/photo-1617469767053-d3b523a0b982?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80') center/cover;
-            border-radius: 10px;
-            opacity: 0.6;
-            transform: rotate(-10deg);
-        }
-        
-        .water-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
             z-index: 1;
-        }
-        
-        .sound-control {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(10, 5, 24, 0.8);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 20;
-            border: 2px solid #7e57c2;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-        }
-        
-        .sound-control i {
-            font-size: 24px;
-            color: #c9b6e4;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(64, 196, 255, 0.9);
         }
         
         .instructions {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             padding: 1.5rem;
-            background: rgba(30, 15, 60, 0.5);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
-            font-size: 1.1rem;
-            text-align: center;
-            border: 1px solid rgba(113, 89, 193, 0.3);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1rem;
+            text-align: left;
+            border: 1px solid rgba(79, 195, 247, 0.2);
         }
         
-        .instructions p {
-            line-height: 1.8;
-            margin-top: 10px;
+        .instructions h3 {
+            margin-bottom: 1rem;
+            color: #4fc3f7;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        @keyframes waterRise {
+            to {
+                height: 150px;
+            }
+        }
+        
+        .water-rising {
+            animation: waterRise 3.5s forwards;
         }
         
         footer {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             text-align: center;
             font-size: 1rem;
-            color: rgba(232, 225, 239, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             padding: 1.2rem;
             width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            font-weight: 300;
         }
         
         /* Animasyon sınıfları */
@@ -359,31 +322,219 @@
             }
         }
         
-        @keyframes waterRise {
-            to {
-                height: 140px;
-            }
-        }
-        
-        .water-rising {
-            animation: waterRise 3.5s forwards;
-        }
-        
-        @keyframes glow {
+        @keyframes bgMove {
             0% {
-                box-shadow: 0 0 10px rgba(201, 182, 228, 0.6);
+                background-position: 0% 0%;
             }
             50% {
-                box-shadow: 0 0 30px rgba(201, 182, 228, 0.9);
+                background-position: 100% 100%;
             }
             100% {
-                box-shadow: 0 0 10px rgba(201, 182, 228, 0.6);
+                background-position: 0% 0%;
             }
+        }
+        
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+        
+        .moving-bg {
+            animation: bgMove 30s linear infinite;
+        }
+        
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: transform 0.5s ease;
+            opacity: 0.85;
+        }
+        
+        .overlay-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .custom-btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn {
+            background: #ff5252;
+        }
+        
+        .remove-btn:hover {
+            background: #ff0000;
+            transform: translateY(-2px);
+        }
+        
+        .action-btn {
+            background: #4CAF50;
+        }
+        
+        .action-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .effect-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 12px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05rem;
+        }
+        
+        .checkbox-container input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .preview-box {
+            width: 150px;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(79, 195, 247, 0.4);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+        
+        .preview-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .preview-title {
+            width: 100%;
+            text-align: left;
+            color: #4fc3f7;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        /* Modal için stiller */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: #222;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 90%;
+            width: 600px;
+            max-height: 90vh;
+            overflow: auto;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            border: 2px solid #00bcd4;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #ff5252;
+        }
+        
+        .webcam-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        #webcamVideo {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            background: #000;
+        }
+        
+        .capture-btn {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #00bcd4, #0288d1);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .capture-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.6);
         }
         
         @media (max-width: 768px) {
             .container {
-                padding: 1rem;
+                padding: 1.5rem;
                 width: 98%;
             }
             
@@ -395,153 +546,325 @@
                 font-size: 1.1rem;
             }
             
-            .simulation-area {
-                height: 400px;
+            .baptism-area {
+                height: 320px;
             }
             
-            .baptism-scene {
-                width: 280px;
-                height: 280px;
+            .person-photo {
+                width: 160px;
+                height: 160px;
             }
             
-            .bathtub {
-                width: 250px;
-                height: 150px;
+            .control-group {
+                padding: 1.5rem;
             }
             
-            .person {
-                width: 100px;
-                height: 130px;
+            .control-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
             
             .baptize-btn {
                 padding: 1.2rem 2rem;
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="water-effect" id="waterEffect"></div>
+    <div class="background-overlay" id="backgroundOverlay"></div>
     
     <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-dove"></i> SANATSAL VAFTİZ</h1>
-            <p class="subtitle">Kutsal suyla ruhunuzu arındırın ve yeniden doğun. Rönesans tarzında unutulmaz bir deneyim.</p>
-        </div>
+        <h1><i class="fas fa-water"></i> VAFTİZ TÖRENİ SİMÜLASYONU</h1>
+        <p class="subtitle">Kutsal suyla arının ve yeniden doğun. Müzik eşliğinde su damlalarının altında ruhunuzu arındırın.</p>
         
-        <div class="simulation-area">
-            <div class="artistic-background"></div>
-            <div class="stained-glass"></div>
-            
-            <div class="artistic-details">
-                <div class="detail-1"></div>
-                <div class="detail-2"></div>
-            </div>
-            
-            <div class="baptism-scene">
-                <div class="bathtub">
-                    <div class="water-level" id="waterLevel"></div>
-                    <div class="person"></div>
+        <div class="baptism-area" id="baptismArea">
+            <div class="person-container">
+                <div class="person-photo" id="personPhoto">
+                    <i class="fas fa-user default-avatar" id="defaultAvatar"></i>
+                    <img id="uploadedPhoto" alt="Vaftiz edilen kişi">
                 </div>
+                <div class="water-pool" id="waterPool"></div>
             </div>
         </div>
         
         <div class="controls">
+            <div class="control-group">
+                <h3 style="color:#4fc3f7; margin-bottom:20px; display:flex; align-items:center; gap:10px;">
+                    <i class="fas fa-sliders-h"></i> Simülasyon Kontrolleri
+                </h3>
+                
+                <div class="control-row">
+                    <label for="musicFile"><i class="fas fa-music"></i> Müzik Dosyası:</label>
+                    <input type="file" id="musicFile" accept="audio/*" style="color:white;">
+                </div>
+                
+                <div class="control-row">
+                    <label for="photoFile"><i class="fas fa-user-circle"></i> Kişi Fotoğrafı:</label>
+                    <div class="overlay-controls">
+                        <input type="file" id="photoFile" accept="image/*" style="color:white;">
+                        <button class="custom-btn remove-btn" id="removePhoto">
+                            <i class="fas fa-times"></i> Fotoğrafı Kaldır
+                        </button>
+                        <button class="custom-btn action-btn" id="webcamBtn">
+                            <i class="fas fa-camera"></i> Webcam ile Çek
+                        </button>
+                    </div>
+                    
+                    <div class="preview-container">
+                        <div class="preview-title">Fotoğraf Önizleme:</div>
+                        <div class="preview-box" id="photoPreview">
+                            <span>Fotoğraf yüklenmedi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="effect-info">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="bgMovement" checked>
+                        <label for="bgMovement">Vaftiz sırasında arkaplan hareket etsin</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="personEffect" checked>
+                        <label for="personEffect">Kişiye su efekti uygula</label>
+                    </div>
+                </div>
+            </div>
+            
             <button class="baptize-btn" id="baptizeBtn">
-                <i class="fas fa-hand-holding-water"></i> VAFTİZİ BAŞLAT
+                <i class="fas fa-hand-holding-water"></i> VAFTİZ ET
             </button>
         </div>
         
         <div class="instructions">
-            <p>Butona basarak sanatsal vaftiz deneyimini başlatın. Su damlaları dökülmeye başlayacak, küvet suyla dolacak ve ruhunuz arınacak.</p>
+            <h3><i class="fas fa-info-circle"></i> Nasıl Kullanılır:</h3>
+            <ol style="padding-left: 20px; line-height: 1.8;">
+                <li>Kişi fotoğrafı yükleyin veya webcam ile çekin</li>
+                <li>İstediğiniz bir müzik dosyası seçin (MP3, WAV, vb.)</li>
+                <li>Efekt ayarlarınızı belirleyin</li>
+                <li>"Vaftiz Et" butonuna basın</li>
+                <li>Su damlaları dökülmeye başlayacak, seçtiğiniz müzik çalacaktır</li>
+                <li>Arkaplan hareketi etkinleştirilmişse, arkaplan yavaşça hareket edecektir</li>
+            </ol>
         </div>
     </div>
     
-    <div class="sound-control" id="soundControl">
-        <i class="fas fa-volume-up"></i>
-    </div>
-    
     <footer>
-        <p>Sanatsal Vaftiz Simülasyonu © 2023 | Rönesans Ruhuyla Tasarlanmıştır</p>
+        <p>Kutsal Vaftiz Simülasyonu © 2023 | Ruhunuzu arındırın, yeniden doğun!</p>
     </footer>
+    
+    <!-- Webcam Modal -->
+    <div class="modal" id="webcamModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 style="color:#00bcd4; margin-bottom:20px; text-align:center;">
+                <i class="fas fa-camera"></i> Webcam ile Fotoğraf Çek
+            </h2>
+            
+            <div class="webcam-container">
+                <video id="webcamVideo" autoplay playsinline></video>
+                <button class="capture-btn" id="captureBtn">
+                    <i class="fas fa-camera"></i> Fotoğraf Çek
+                </button>
+            </div>
+            
+            <div style="margin-top:25px; color:#aaa; font-size:0.9rem; text-align:center;">
+                <p>Webcam'inizin kullanımına izin verin. Fotoğraf çekmek için "Fotoğraf Çek" butonuna basın.</p>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const baptizeBtn = document.getElementById('baptizeBtn');
-            const waterLevel = document.getElementById('waterLevel');
-            const soundControl = document.getElementById('soundControl');
-            const waterEffect = document.getElementById('waterEffect');
+            const musicFileInput = document.getElementById('musicFile');
+            const photoFileInput = document.getElementById('photoFile');
+            const removePhotoBtn = document.getElementById('removePhoto');
+            const webcamBtn = document.getElementById('webcamBtn');
+            const backgroundOverlay = document.getElementById('backgroundOverlay');
+            const bgMovementCheckbox = document.getElementById('bgMovement');
+            const personEffectCheckbox = document.getElementById('personEffect');
+            const baptismArea = document.getElementById('baptismArea');
+            const waterPool = document.getElementById('waterPool');
+            const webcamModal = document.getElementById('webcamModal');
+            const closeModal = document.getElementById('closeModal');
+            const webcamVideo = document.getElementById('webcamVideo');
+            const captureBtn = document.getElementById('captureBtn');
+            const photoPreview = document.getElementById('photoPreview');
+            const personPhoto = document.getElementById('personPhoto');
+            const uploadedPhoto = document.getElementById('uploadedPhoto');
+            const defaultAvatar = document.getElementById('defaultAvatar');
             
-            // Ses efekti oluştur
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            let waterSound;
+            let selectedMusicFile = null;
+            let bgMovementEnabled = true;
+            let personEffectEnabled = true;
+            let stream = null;
             
-            // Su sesi oluşturma fonksiyonu
-            function createWaterSound() {
-                waterSound = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                waterSound.type = 'sine';
-                waterSound.frequency.value = 200;
-                
-                gainNode.gain.value = 0.1;
-                
-                waterSound.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                // Rastgele modülasyon
-                setInterval(() => {
-                    waterSound.frequency.setValueAtTime(
-                        180 + Math.random() * 40, 
-                        audioContext.currentTime
-                    );
-                }, 200);
+            // Müzik dosyası seçme
+            musicFileInput.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    selectedMusicFile = e.target.files[0];
+                    showNotification(`"${selectedMusicFile.name}" müzik dosyası seçildi!`);
+                }
+            });
+            
+            // Fotoğraf seçme
+            photoFileInput.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        uploadedPhoto.src = e.target.result;
+                        uploadedPhoto.style.display = 'block';
+                        defaultAvatar.style.display = 'none';
+                        
+                        // Önizleme
+                        photoPreview.innerHTML = `<img src="${e.target.result}" alt="Kişi Fotoğrafı">`;
+                        
+                        showNotification(`"${file.name}" kişi fotoğrafı seçildi!`);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Fotoğraf kaldırma
+            removePhotoBtn.addEventListener('click', function() {
+                uploadedPhoto.src = '';
+                uploadedPhoto.style.display = 'none';
+                defaultAvatar.style.display = 'block';
+                photoPreview.innerHTML = `<span>Fotoğraf yüklenmedi</span>`;
+                showNotification("Kişi fotoğrafı kaldırıldı!");
+            });
+            
+            // Arkaplan hareketi kontrolü
+            bgMovementCheckbox.addEventListener('change', function() {
+                bgMovementEnabled = this.checked;
+            });
+            
+            // Kişi efekti kontrolü
+            personEffectCheckbox.addEventListener('change', function() {
+                personEffectEnabled = this.checked;
+            });
+            
+            // Webcam butonu
+            webcamBtn.addEventListener('click', function() {
+                webcamModal.style.display = 'flex';
+                startWebcam();
+            });
+            
+            // Modal kapatma
+            closeModal.addEventListener('click', function() {
+                webcamModal.style.display = 'none';
+                stopWebcam();
+            });
+            
+            // Webcam başlatma
+            function startWebcam() {
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                        .then(function(mediaStream) {
+                            stream = mediaStream;
+                            webcamVideo.srcObject = stream;
+                        })
+                        .catch(function(error) {
+                            console.error("Webcam error: ", error);
+                            showNotification("Webcam'e erişilemedi. Lütfen izinleri kontrol edin.", true);
+                            webcamModal.style.display = 'none';
+                        });
+                } else {
+                    showNotification("Tarayıcınız webcam özelliğini desteklemiyor.", true);
+                    webcamModal.style.display = 'none';
+                }
             }
             
-            // Ses kontrolü
-            let isMuted = false;
-            
-            soundControl.addEventListener('click', function() {
-                isMuted = !isMuted;
-                
-                if (isMuted) {
-                    if (waterSound) waterSound.stop();
-                    soundControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                } else {
-                    createWaterSound();
-                    waterSound.start();
-                    soundControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+            // Webcam durdurma
+            function stopWebcam() {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    webcamVideo.srcObject = null;
+                    stream = null;
                 }
+            }
+            
+            // Fotoğraf çekme
+            captureBtn.addEventListener('click', function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = webcamVideo.videoWidth;
+                canvas.height = webcamVideo.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(webcamVideo, 0, 0, canvas.width, canvas.height);
+                
+                const dataUrl = canvas.toDataURL('image/png');
+                
+                // Kişi fotoğrafını ayarla
+                uploadedPhoto.src = dataUrl;
+                uploadedPhoto.style.display = 'block';
+                defaultAvatar.style.display = 'none';
+                
+                // Önizleme
+                photoPreview.innerHTML = `<img src="${dataUrl}" alt="Webcam Fotoğrafı">`;
+                
+                showNotification("Webcam fotoğrafı başarıyla yüklendi!");
+                
+                webcamModal.style.display = 'none';
+                stopWebcam();
             });
             
             // Vaftiz butonuna tıklama
             baptizeBtn.addEventListener('click', function() {
-                // Su sesini başlat
-                if (!isMuted) {
-                    createWaterSound();
-                    waterSound.start();
+                if (!selectedMusicFile) {
+                    showNotification("Lütfen önce bir müzik dosyası seçin!", true);
+                    return;
                 }
                 
-                // Su seviyesi animasyonu
-                waterLevel.classList.add('water-rising');
+                if (uploadedPhoto.style.display === 'none') {
+                    showNotification("Lütfen bir kişi fotoğrafı yükleyin!", true);
+                    return;
+                }
+                
+                // Müziği çal
+                const objectURL = URL.createObjectURL(selectedMusicFile);
+                const audioPlayer = new Audio(objectURL);
+                audioPlayer.play();
+                
+                // Su havuzu animasyonu
+                waterPool.classList.add('water-rising');
                 
                 // Damlaları oluştur
                 createWaterDrops();
+                
+                // Kişi animasyonu
+                if (personEffectEnabled) {
+                    personPhoto.style.transform = 'scale(1.05)';
+                    personPhoto.style.boxShadow = '0 0 40px rgba(79, 195, 247, 0.8)';
+                    setTimeout(() => {
+                        personPhoto.style.transform = 'scale(1)';
+                        personPhoto.style.boxShadow = '0 0 30px rgba(0,0,0,0.7)';
+                    }, 500);
+                }
+                
+                // Arkaplan hareketi
+                if (bgMovementEnabled) {
+                    backgroundOverlay.style.animation = 'bgMove 30s linear infinite';
+                    
+                    // 30 saniye sonra animasyonu durdur
+                    setTimeout(() => {
+                        backgroundOverlay.style.animation = 'none';
+                    }, 30000);
+                }
                 
                 // Butonu geçici olarak devre dışı bırak
                 baptizeBtn.disabled = true;
                 baptizeBtn.innerHTML = '<i class="fas fa-sync fa-spin"></i> VAFTİZ EDİLİYOR...';
                 
-                // Butona parıltı efekti ekle
-                baptizeBtn.style.animation = 'glow 2s infinite';
-                
                 setTimeout(() => {
                     baptizeBtn.disabled = false;
-                    baptizeBtn.innerHTML = '<i class="fas fa-hand-holding-water"></i> VAFTİZİ BAŞLAT';
-                    waterLevel.classList.remove('water-rising');
-                    waterLevel.style.height = "40px";
-                    baptizeBtn.style.animation = 'none';
+                    baptizeBtn.innerHTML = '<i class="fas fa-hand-holding-water"></i> VAFTİZ ET';
+                    waterPool.classList.remove('water-rising');
+                    waterPool.style.height = "40px";
                     
                     // Başarı mesajı
                     showNotification("Vaftiz işlemi tamamlandı! Ruhunuz arındı.");
@@ -550,12 +873,12 @@
             
             // Su damlalarını oluşturma fonksiyonu
             function createWaterDrops() {
-                const dropCount = 150;
+                const dropCount = 200;
                 
                 for (let i = 0; i < dropCount; i++) {
                     setTimeout(() => {
                         createDrop();
-                    }, i * 30);
+                    }, i * 20);
                 }
             }
             
@@ -565,19 +888,19 @@
                 drop.className = 'water-drop';
                 
                 // Rastgele pozisyon
-                const xPos = Math.random() * window.innerWidth;
+                const xPos = Math.random() * (baptismArea.offsetWidth - 20);
                 drop.style.left = `${xPos}px`;
                 
                 // Rastgele boyut
-                const size = 5 + Math.random() * 15;
+                const size = 3 + Math.random() * 12;
                 drop.style.width = `${size}px`;
                 drop.style.height = `${size * 2}px`;
                 
                 // Rastgele düşme süresi
-                const duration = 0.5 + Math.random() * 1.5;
+                const duration = 0.4 + Math.random() * 1.2;
                 drop.style.animation = `fall ${duration}s linear forwards`;
                 
-                waterEffect.appendChild(drop);
+                baptismArea.appendChild(drop);
                 
                 // Damla yere düştüğünde sıçrama efekti
                 setTimeout(() => {
@@ -591,10 +914,10 @@
                 const splash = document.createElement('div');
                 splash.className = 'water-splash';
                 splash.style.left = `${xPos}px`;
-                splash.style.bottom = '0';
+                splash.style.bottom = '40px';
                 splash.style.animation = `splash 0.6s ease-out forwards`;
                 
-                waterEffect.appendChild(splash);
+                baptismArea.appendChild(splash);
                 
                 setTimeout(() => {
                     splash.remove();
@@ -615,7 +938,7 @@
                     top: 20px;
                     right: 20px;
                     padding: 15px 25px;
-                    background: ${isError ? '#ff5252' : '#7e57c2'};
+                    background: ${isError ? '#ff5252' : '#4CAF50'};
                     color: white;
                     border-radius: 8px;
                     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
